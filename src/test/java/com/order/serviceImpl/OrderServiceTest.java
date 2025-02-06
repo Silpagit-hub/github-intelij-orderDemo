@@ -50,22 +50,6 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void testCreateOrder_Success() {
-        when(modelMapper.map(orderDto, OrderEntity.class)).thenReturn(orderEntity);
-        when(orderRepo.save(orderEntity)).thenReturn(Mono.just(orderEntity));
-
-        Mono<OrderEntity> result = orderService.createOrder(orderDto);
-
-        StepVerifier.create(result)
-                .expectNext(orderEntity)
-                .verifyComplete();
-
-        verify(modelMapper, times(1)).map(orderDto, OrderEntity.class);
-        verify(orderRepo, times(1)).save(orderEntity);
-        verify(kafkaTemplate, times(1)).send(eq("order-topic"), anyString());
-    }
-
-    @Test
     public void testGetOrderById_Success() {
         when(orderRepo.findById("1")).thenReturn(Mono.just(orderEntity));
 

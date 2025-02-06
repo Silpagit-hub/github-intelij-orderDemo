@@ -33,7 +33,6 @@ public class TransServiceConsumer {
         orderService.getOrderById(orderId)
                 .flatMap(orderEntity -> {
                     if (paymentStatus().equals("true")) {
-                        // Create the transaction entity
                         TransEntity transEntity = new TransEntity();
                         transEntity.setTransId(transIdGenerator());
                         transEntity.setOrderId(orderEntity.getOrderId());
@@ -48,6 +47,7 @@ public class TransServiceConsumer {
                                 })
                                 .thenReturn(orderEntity);
                     } else {
+                        System.out.println("The payment status is still pending");
                         return Mono.just(orderEntity);
                     }
                 })

@@ -32,7 +32,6 @@ public class OrderService {
                     System.out.println("Message sent to Kafka: " + message);
                 })
                 .onErrorResume(e -> {
-                    // Here we can handle database-specific exceptions, e.g. constraint violation
                     System.err.println("Error while saving order: " + e.getMessage());
                     return Mono.error(new DatabaseException("Failed to create order due to a database error"));
                 });

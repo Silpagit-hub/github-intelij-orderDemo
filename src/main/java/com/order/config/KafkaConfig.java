@@ -22,9 +22,7 @@ public class KafkaConfig {
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
     private static final String GROUP_ID = "order-group";
 
-    /**
-     * ✅ Kafka Producer Configuration
-     */
+
     @Bean
     public KafkaTemplate<String, List<String>> kafkaTemplate() {
         Map<String, Object> producerProps = new HashMap<>();
@@ -38,9 +36,7 @@ public class KafkaConfig {
         return new KafkaTemplate<>(producerFactory);
     }
 
-    /**
-     * ✅ Kafka Consumer Configuration
-     */
+
     @Bean
     public ConsumerFactory<String, List<String>> consumerFactory() {
         Map<String, Object> consumerProps = new HashMap<>();
@@ -58,9 +54,7 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(consumerProps);
     }
 
-    /**
-     * ✅ Kafka Listener Factory
-     */
+
     @Bean
     public KafkaListenerContainerFactory<?> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, List<String>> factory =

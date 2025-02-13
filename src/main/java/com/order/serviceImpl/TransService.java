@@ -10,11 +10,13 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Service
 public class TransService {
 
     @Autowired
-    KafkaTemplate<String, Object> kafkaTemplate;
+    private KafkaTemplate<String, List<String>> kafkaTemplate;
     @Autowired
     TransRepo transRepo;
     @Autowired

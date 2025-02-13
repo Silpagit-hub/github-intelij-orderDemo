@@ -12,5 +12,6 @@ public class TransEntity {
     private String transId;
     private String orderId;
     private double amount;
-    private String paymentStatus; // fail or pass
+    private String paymentStatus;
+    private String status;
 }
